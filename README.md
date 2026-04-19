@@ -1,4 +1,4 @@
-# [アプリを開く（GitHub Pages）](https://yugo-yamamoto.github.io/work/)
+# [アプリを開く（GitHub Pages）](https://yugo-yamamoto.github.io/blood-pressure-pwa/)
 
 # 血圧手帳 PWA (Blood Pressure Diary)
 
