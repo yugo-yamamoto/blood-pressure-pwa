@@ -1,3 +1,7 @@
+# [アプリを開く（GitHub Pages）](https://yugo-yamamoto.github.io/work/)
+
+# [アプリを開く（GitHub Pages）](https://yugo-yamamoto.github.io/work/)
+
 # 血圧手帳 PWA (Blood Pressure Diary)
 
 Gemini APIを活用した、シンプルでプライバシー重視の血圧管理PWAです。
