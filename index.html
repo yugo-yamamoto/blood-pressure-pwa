@@ -1,2780 +1,589 @@
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>血圧手帳</title>
+  
+  <link id="dynamic-manifest" rel="manifest">
 
-  <!DOCTYPE html>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+  <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.4/dist/dexie.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <html lang="ja">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  <head>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <meta charset="UTF-8">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <title>血圧手帳</title>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+  <style>
+    :root {
+      --primary: #007bff;
+      --bg: #f8f9fa;
+      --border: #dee2e6;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0; padding: 0; background: var(--bg); color: #333;
+      padding-bottom: 70px; /* ナビゲーションバーの余白 */
+    }
+    header { background: var(--primary); color: white; padding: 1rem; text-align: center; }
+    h1, h2 { margin: 0 0 1rem 0; font-size: 1.2rem; }
     
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <link id="dynamic-manifest" rel="manifest">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/dexie@3.2.4/dist/dexie.js"></script>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <style>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      :root {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        --primary: #007bff;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        --bg: #f8f9fa;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        --border: #dee2e6;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      body {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        margin: 0; padding: 0; background: var(--bg); color: #333;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        padding-bottom: 70px; /* ナビゲーションバーの余白 */
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      header { background: var(--primary); color: white; padding: 1rem; text-align: center; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      h1, h2 { margin: 0 0 1rem 0; font-size: 1.2rem; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .container { padding: 1rem; max-width: 600px; margin: 0 auto; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .page { display: none; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .page.active { display: block; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      /* フォーム・ボタン */
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .form-group { margin-bottom: 1rem; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      label { display: block; margin-bottom: 0.3rem; font-weight: bold; font-size: 0.9rem; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      input[type="text"], input[type="password"], input[type="number"], input[type="datetime-local"], input[type="file"] {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: 4px; box-sizing: border-box; font-size: 1rem;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .btn {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        display: block; width: 100%; padding: 0.8rem; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; text-align: center; margin-bottom: 0.5rem;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .btn-primary { background: var(--primary); color: white; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .btn-success { background: #28a745; color: white; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .btn-danger { background: #dc3545; color: white; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .btn-secondary { background: #6c757d; color: white; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      /* カメラ */
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      #camera-container { text-align: center; margin-bottom: 1rem; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      video { width: 100%; max-width: 100%; border-radius: 8px; background: #000; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      #ocr-status { font-size: 0.9rem; font-weight: bold; color: var(--primary); min-height: 1.2em; margin-bottom: 1rem;}
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      /* テーブル */
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      th, td { border-bottom: 1px solid var(--border); padding: 0.8rem 0.4rem; text-align: center; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      th { background: var(--bg); }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      tbody tr:active { background: #f0f0f0; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      /* 下部ナビゲーション */
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      nav {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        position: fixed; bottom: 0; left: 0; width: 100%; display: flex;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        background: white; border-top: 1px solid var(--border); box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      nav button {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        flex: 1; padding: 1rem 0; border: none; background: none; font-size: 0.9rem; font-weight: bold; color: #666; cursor: pointer;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      nav button.active { color: var(--primary); border-top: 3px solid var(--primary); }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .help-text { font-size: 0.8rem; color: #666; margin-top: 0.2rem; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        .footer { text-align: center; padding: 1.5rem 0; font-size: 0.8rem; color: #666; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      .footer a { color: #007bff; text-decoration: none; }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    </style>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  </head>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  <body>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <header>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      <h1>血圧手帳</h1>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    </header>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <div class="container">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      <div id="page-record" class="page active">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <h2>記録する</h2>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <div id="camera-container">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <video id="camera" autoplay playsinline style="display:none;"></video>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <button type="button" id="btn-start-camera" class="btn btn-secondary">カメラを起動する</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <button type="button" id="btn-capture" class="btn btn-primary" style="display:none;">撮影してAIで読み取る</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <p id="ocr-status"></p>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <canvas id="canvas" style="display:none;"></canvas>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <form id="record-form">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <input type="hidden" id="edit-id">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <div class="form-group">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            <label>測定日時</label>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            <input type="datetime-local" id="input-date" required>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <div class="form-group">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            <label>最高血圧 (SYS)</label>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            <input type="number" id="input-sys" required min="0" max="300">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <div class="form-group">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            <label>最低血圧 (DIA)</label>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            <input type="number" id="input-dia" required min="0" max="300">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <div class="form-group">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            <label>心拍数 (PULSE)</label>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            <input type="number" id="input-pulse" required min="0" max="200">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <button type="submit" class="btn btn-success">保存する</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <button type="button" id="btn-delete" class="btn btn-danger" style="display:none;">この記録を削除</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <button type="button" id="btn-cancel-edit" class="btn btn-secondary" style="display:none;">キャンセル</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        </form>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      <div id="page-list" class="page">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <h2>記録一覧</h2>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <p style="font-size: 0.8rem; color: #666;">※行をタップすると編集・削除ができます</p>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <table>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <thead>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            <tr><th>日時</th><th>最高</th><th>最低</th><th>心拍</th></tr>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          </thead>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <tbody id="record-tbody"></tbody>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        </table>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      <div id="page-graph" class="page">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <h2>血圧推移グラフ</h2>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <canvas id="bpChart"></canvas>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      <div id="page-settings" class="page">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <h2>AI設定</h2>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <div class="form-group">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <label>Gemini API キー</label>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <input type="password" id="input-api-key" placeholder="AI Studioで取得したAPIキー">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <p class="help-text">画像解析に使用します。キーはお使いの端末内にのみ保存されます。</p>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <button id="btn-save-apikey" class="btn btn-primary" style="margin-top: 0.5rem;">APIキーを保存</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <hr style="border: 0; border-top: 1px solid #dee2e6; margin: 1.5rem 0;">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <h2>データ管理</h2>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <div class="form-group">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <label>データのバックアップ・共有</label>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <button id="btn-export" class="btn btn-secondary">CSVをダウンロード</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        <div class="form-group" style="margin-top: 1rem;">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <label>CSVから復元 (アップロード)</label>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          <input type="file" id="input-import" accept=".csv">
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+    .container { padding: 1rem; max-width: 600px; margin: 0 auto; }
+    .page { display: none; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .page.active { display: block; }
+    
+    /* フォーム・ボタン */
+    .form-group { margin-bottom: 1rem; }
+    label { display: block; margin-bottom: 0.3rem; font-weight: bold; font-size: 0.9rem; }
+    input[type="text"], input[type="password"], input[type="number"], input[type="datetime-local"], input[type="file"] {
+      width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: 4px; box-sizing: border-box; font-size: 1rem;
+    }
+    .btn {
+      display: block; width: 100%; padding: 0.8rem; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; text-align: center; margin-bottom: 0.5rem;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-success { background: #28a745; color: white; }
+    .btn-danger { background: #dc3545; color: white; }
+    .btn-secondary { background: #6c757d; color: white; }
+    
+    /* カメラ */
+    #camera-container { text-align: center; margin-bottom: 1rem; }
+    video { width: 100%; max-width: 100%; border-radius: 8px; background: #000; }
+    #ocr-status { font-size: 0.9rem; font-weight: bold; color: var(--primary); min-height: 1.2em; margin-bottom: 1rem;}
+    
+    /* テーブル */
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { border-bottom: 1px solid var(--border); padding: 0.8rem 0.4rem; text-align: center; }
+    th { background: var(--bg); }
+    tbody tr:active { background: #f0f0f0; }
+    
+    /* 下部ナビゲーション */
+    nav {
+      position: fixed; bottom: 0; left: 0; width: 100%; display: flex;
+      background: white; border-top: 1px solid var(--border); box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    }
+    nav button {
+      flex: 1; padding: 1rem 0; border: none; background: none; font-size: 0.9rem; font-weight: bold; color: #666; cursor: pointer;
+    }
+    nav button.active { color: var(--primary); border-top: 3px solid var(--primary); }
+    
+    .help-text { font-size: 0.8rem; color: #666; margin-top: 0.2rem; }
+    .footer { text-align: center; padding: 1.5rem 0; font-size: 0.8rem; color: #666; }
+    .footer a { color: #007bff; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>血圧手帳</h1>
+  </header>
+
+  <div class="container">
+    
+    <div id="install-banner" style="display: none; background: #e2e3e5; padding: 1rem; margin-bottom: 1rem; border-radius: 8px; text-align: center;">
+      <p style="margin: 0 0 0.5rem 0; font-size: 0.9rem; font-weight: bold; color: #383d41;">アプリとしてホーム画面に追加できます</p>
+      <button id="btn-install" class="btn btn-primary" style="margin: 0;">インストールする</button>
     </div>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <nav>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      <button class="nav-btn active" data-target="page-record">記録</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      <button class="nav-btn" data-target="page-list">一覧</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      <button class="nav-btn" data-target="page-graph">グラフ</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      <button class="nav-btn" data-target="page-settings">設定</button>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    </nav>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-    <script>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // 1. PWA設定 (1ファイル完結のための動的生成)
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      const manifest = {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        name: "血圧手帳 PWA",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        short_name: "血圧手帳",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        start_url: location.href,
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        display: "standalone",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        background_color: "#f8f9fa",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        theme_color: "#007bff",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        icons: [{
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23007bff'/%3E%3Ctext x='50' y='65' font-size='40' fill='white' text-anchor='middle'%3EBP%3C/text%3E%3C/svg%3E",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          sizes: "192x192",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          type: "image/svg+xml",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          purpose: "any maskable"
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        }]
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      };
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      document.getElementById('dynamic-manifest').href = URL.createObjectURL(manifestBlob);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      if ('serviceWorker' in navigator) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const swCode = `
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          const CACHE_NAME = 'bp-cache-v1';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          self.addEventListener('install', e => self.skipWaiting());
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          self.addEventListener('activate', e => self.clients.claim());
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          self.addEventListener('fetch', e => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            e.respondWith(fetch(e.request).catch(() => new Response('Offline')));
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        `;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const swBlob = new Blob([swCode], { type: 'application/javascript' });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(err => console.log('SW登録スキップ (Blob制限等):', err));
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // 2. データベース設定 (Dexie.js)
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      const db = new Dexie("BloodPressureDB");
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      db.version(1).stores({
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        records: '++id, date, sys, dia, pulse'
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // 3. UI・タブ制御
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      const pages = document.querySelectorAll('.page');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      const navBtns = document.querySelectorAll('.nav-btn');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      navBtns.forEach(btn => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        btn.addEventListener('click', () => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          pages.forEach(p => p.classList.remove('active'));
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          navBtns.forEach(b => b.classList.remove('active'));
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          document.getElementById(btn.dataset.target).classList.add('active');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          btn.classList.add('active');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          if (btn.dataset.target === 'page-list') loadList();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          if (btn.dataset.target === 'page-graph') loadGraph();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          if (btn.dataset.target === 'page-settings') loadSettings();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          if (btn.dataset.target === 'page-record') {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            if(!document.getElementById('edit-id').value) initForm();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          } else {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            stopCamera();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            resetCameraUI();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
 
+    <div id="page-record" class="page active">
+      <h2>記録する</h2>
+      <div id="camera-container">
+        <video id="camera" autoplay playsinline style="display:none;"></video>
+        <button type="button" id="btn-start-camera" class="btn btn-secondary">カメラを起動する</button>
+        <button type="button" id="btn-capture" class="btn btn-primary" style="display:none;">撮影してAIで読み取る</button>
+        <p id="ocr-status"></p>
+      </div>
+      <canvas id="canvas" style="display:none;"></canvas>
+
+      <form id="record-form">
+        <input type="hidden" id="edit-id">
+        <div class="form-group">
+          <label>測定日時</label>
+          <input type="datetime-local" id="input-date" required>
+        </div>
+        <div class="form-group">
+          <label>最高血圧 (SYS)</label>
+          <input type="number" id="input-sys" required min="0" max="300">
+        </div>
+        <div class="form-group">
+          <label>最低血圧 (DIA)</label>
+          <input type="number" id="input-dia" required min="0" max="300">
+        </div>
+        <div class="form-group">
+          <label>心拍数 (PULSE)</label>
+          <input type="number" id="input-pulse" required min="0" max="200">
+        </div>
+        <button type="submit" class="btn btn-success">保存する</button>
+        <button type="button" id="btn-delete" class="btn btn-danger" style="display:none;">この記録を削除</button>
+        <button type="button" id="btn-cancel-edit" class="btn btn-secondary" style="display:none;">キャンセル</button>
+      </form>
+    </div>
+
+    <div id="page-list" class="page">
+      <h2>記録一覧</h2>
+      <p style="font-size: 0.8rem; color: #666;">※行をタップすると編集・削除ができます</p>
+      <table>
+        <thead>
+          <tr><th>日時</th><th>最高</th><th>最低</th><th>心拍</th></tr>
+        </thead>
+        <tbody id="record-tbody"></tbody>
+      </table>
+    </div>
+
+    <div id="page-graph" class="page">
+      <h2>血圧推移グラフ</h2>
+      <canvas id="bpChart"></canvas>
+    </div>
+
+    <div id="page-settings" class="page">
+      <h2>AI設定</h2>
+      <div class="form-group">
+        <label>Gemini API キー</label>
+        <input type="password" id="input-api-key" placeholder="AI Studioで取得したAPIキー">
+        <p class="help-text">画像解析に使用します。キーはお使いの端末内にのみ保存されます。</p>
+        <button id="btn-save-apikey" class="btn btn-primary" style="margin-top: 0.5rem;">APIキーを保存</button>
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid #dee2e6; margin: 1.5rem 0;">
+
+      <h2>データ管理</h2>
+      <div class="form-group">
+        <label>データのバックアップ・共有</label>
+        <button id="btn-export" class="btn btn-secondary">CSVをダウンロード</button>
+      </div>
+      <div class="form-group" style="margin-top: 1rem;">
+        <label>CSVから復元 (アップロード)</label>
+        <input type="file" id="input-import" accept=".csv">
+      </div>
+    </div>
+
+    <footer class="footer">
+      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
+    </footer>
+
+  </div>
+
+  <nav>
+    <button class="nav-btn active" data-target="page-record">記録</button>
+    <button class="nav-btn" data-target="page-list">一覧</button>
+    <button class="nav-btn" data-target="page-graph">グラフ</button>
+    <button class="nav-btn" data-target="page-settings">設定</button>
+  </nav>
+
+  <script>
+    // ==========================================
+    // 1. PWA設定 (1ファイル完結のための動的生成)
+    // ==========================================
+    const manifest = {
+      name: "血圧手帳 PWA",
+      short_name: "血圧手帳",
+      start_url: location.href,
+      display: "standalone",
+      background_color: "#f8f9fa",
+      theme_color: "#007bff",
+      icons: [{
+        src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23007bff'/%3E%3Ctext x='50' y='65' font-size='40' fill='white' text-anchor='middle'%3EBP%3C/text%3E%3C/svg%3E",
+        sizes: "192x192",
+        type: "image/svg+xml",
+        purpose: "any maskable"
+      }]
+    };
+    const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/manifest+json' });
+    document.getElementById('dynamic-manifest').href = URL.createObjectURL(manifestBlob);
+
+    if ('serviceWorker' in navigator) {
+      const swCode = `
+        const CACHE_NAME = 'bp-cache-v1';
+        self.addEventListener('install', e => self.skipWaiting());
+        self.addEventListener('activate', e => self.clients.claim());
+        self.addEventListener('fetch', e => {
+          e.respondWith(fetch(e.request).catch(() => new Response('Offline')));
         });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+      `;
+      const swBlob = new Blob([swCode], { type: 'application/javascript' });
+      navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(err => console.log('SW登録スキップ (Blob制限等):', err));
+    }
 
-      });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    // インストールプロンプトの制御
+    let deferredPrompt;
+    const installBanner = document.getElementById('install-banner');
+    const btnInstall = document.getElementById('btn-install');
 
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBanner.style.display = 'block';
+    });
 
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // 4. 設定 (APIキー管理)
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      function loadSettings() {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const apiKey = localStorage.getItem('gemini_api_key') || '';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        document.getElementById('input-api-key').value = apiKey;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+    btnInstall.addEventListener('click', async () => {
+      installBanner.style.display = 'none';
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
       }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    });
 
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    window.addEventListener('appinstalled', () => {
+      installBanner.style.display = 'none';
+      deferredPrompt = null;
+    });
 
-      document.getElementById('btn-save-apikey').addEventListener('click', () => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    // ==========================================
+    // 2. データベース設定 (Dexie.js)
+    // ==========================================
+    const db = new Dexie("BloodPressureDB");
+    db.version(1).stores({
+      records: '++id, date, sys, dia, pulse'
+    });
 
-        const apiKey = document.getElementById('input-api-key').value.trim();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    // ==========================================
+    // 3. UI・タブ制御
+    // ==========================================
+    const pages = document.querySelectorAll('.page');
+    const navBtns = document.querySelectorAll('.nav-btn');
 
-        if (apiKey) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        pages.forEach(p => p.classList.remove('active'));
+        navBtns.forEach(b => b.classList.remove('active'));
+        document.getElementById(btn.dataset.target).classList.add('active');
+        btn.classList.add('active');
 
-          localStorage.setItem('gemini_api_key', apiKey);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          alert('APIキーを保存しました。');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+        if (btn.dataset.target === 'page-list') loadList();
+        if (btn.dataset.target === 'page-graph') loadGraph();
+        if (btn.dataset.target === 'page-settings') loadSettings();
+        if (btn.dataset.target === 'page-record') {
+          if(!document.getElementById('edit-id').value) initForm();
         } else {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          localStorage.removeItem('gemini_api_key');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          alert('APIキーを削除しました。');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+          stopCamera();
+          resetCameraUI();
         }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
       });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    });
 
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    // ==========================================
+    // 4. 設定 (APIキー管理)
+    // ==========================================
+    function loadSettings() {
+      const apiKey = localStorage.getItem('gemini_api_key') || '';
+      document.getElementById('input-api-key').value = apiKey;
+    }
 
-      loadSettings();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // 5. カメラ制御
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      const video = document.getElementById('camera');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      const canvas = document.getElementById('canvas');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      let stream = null;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      const btnStartCamera = document.getElementById('btn-start-camera');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      const btnCapture = document.getElementById('btn-capture');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      function resetCameraUI() {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        video.style.display = 'none';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        btnStartCamera.style.display = 'block';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        btnCapture.style.display = 'none';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+    document.getElementById('btn-save-apikey').addEventListener('click', () => {
+      const apiKey = document.getElementById('input-api-key').value.trim();
+      if (apiKey) {
+        localStorage.setItem('gemini_api_key', apiKey);
+        alert('APIキーを保存しました。');
+      } else {
+        localStorage.removeItem('gemini_api_key');
+        alert('APIキーを削除しました。');
       }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      async function startCamera() {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        if (stream) return;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        try {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          video.srcObject = stream;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          video.style.display = 'block';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          btnStartCamera.style.display = 'none';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          btnCapture.style.display = 'block';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          document.getElementById('ocr-status').textContent = '';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        } catch (err) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          console.error("カメラエラー:", err);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          document.getElementById('ocr-status').textContent = "カメラを起動できませんでした。";
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      function stopCamera() {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        if (stream) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          stream.getTracks().forEach(track => track.stop());
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          stream = null;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          video.srcObject = null;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      btnStartCamera.addEventListener('click', startCamera);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // 6. Gemini API (REST) OCR処理
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      async function performOCR(base64Image) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const apiKey = localStorage.getItem('gemini_api_key');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const statusEl = document.getElementById('ocr-status');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        if (!apiKey) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          statusEl.textContent = "設定からAPIキーを登録してください。";
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          document.querySelector('[data-target="page-settings"]').click();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          return null;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        statusEl.textContent = "AIで画像を解析中...";
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const model = 'gemini-2.5-flash-lite';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const payload = {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          contents: [{
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            parts: [
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              { text: "医療機器の表示を読み取ってください。最高血圧、最低血圧、心拍数を抽出してください。" },
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                inline_data: {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                  mime_type: "image/jpeg",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                  data: base64Image
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            ]
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          }],
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          generationConfig: {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            responseMimeType: "application/json",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            responseSchema: {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              type: "OBJECT",
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              properties: {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                sys: { type: "INTEGER", description: "最高血圧 (Systolic)" },
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                dia: { type: "INTEGER", description: "最低血圧 (Diastolic)" },
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                pulse: { type: "INTEGER", description: "心拍数 (Pulse)" }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              },
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              required: ["sys", "dia", "pulse"]
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        };
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        try {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          const response = await fetch(endpoint, {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            method: 'POST',
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            headers: { 'Content-Type': 'application/json' },
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            body: JSON.stringify(payload)
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          if (!response.ok) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            const errorData = await response.json();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            throw new Error(errorData.error?.message || `HTTP error! status: ${response.status}`);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          const data = await response.json();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          const textResponse = data.candidates[0].content.parts[0].text;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          const parsedData = JSON.parse(textResponse);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          statusEl.textContent = "読み取り成功！";
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          return parsedData;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        } catch (error) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          console.error("OCR Error:", error);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          statusEl.textContent = "読み取り失敗: " + error.message;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          return null;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      document.getElementById('btn-capture').addEventListener('click', async () => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        if (!stream) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          alert("カメラが起動していません。");
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          return;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const context = canvas.getContext('2d');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        canvas.width = video.videoWidth;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        canvas.height = video.videoHeight;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const base64Image = dataUrl.split(',')[1];
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        // 撮影後はカメラを停止してUIを戻す
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        stopCamera();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        resetCameraUI();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const result = await performOCR(base64Image);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        if (result) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          if(result.sys) document.getElementById('input-sys').value = result.sys;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          if(result.dia) document.getElementById('input-dia').value = result.dia;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          if(result.pulse) document.getElementById('input-pulse').value = result.pulse;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // 7. フォーム操作・DB保存
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      function initForm() {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        document.getElementById('record-form').reset();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        document.getElementById('edit-id').value = '';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        document.getElementById('btn-delete').style.display = 'none';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        document.getElementById('btn-cancel-edit').style.display = 'none';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+    });
+
+    loadSettings();
+
+    // ==========================================
+    // 5. カメラ制御
+    // ==========================================
+    const video = document.getElementById('camera');
+    const canvas = document.getElementById('canvas');
+    let stream = null;
+    const btnStartCamera = document.getElementById('btn-start-camera');
+    const btnCapture = document.getElementById('btn-capture');
+
+    function resetCameraUI() {
+      video.style.display = 'none';
+      btnStartCamera.style.display = 'block';
+      btnCapture.style.display = 'none';
+    }
+
+    async function startCamera() {
+      if (stream) return;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+        video.srcObject = stream;
+        video.style.display = 'block';
+        btnStartCamera.style.display = 'none';
+        btnCapture.style.display = 'block';
         document.getElementById('ocr-status').textContent = '';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        resetCameraUI();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const now = new Date();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        document.getElementById('input-date').value = now.toISOString().slice(0, 16);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+      } catch (err) {
+        console.error("カメラエラー:", err);
+        document.getElementById('ocr-status').textContent = "カメラを起動できませんでした。";
       }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    }
 
-      initForm();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      document.getElementById('record-form').addEventListener('submit', async (e) => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        e.preventDefault();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const id = document.getElementById('edit-id').value;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const record = {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          date: document.getElementById('input-date').value,
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          sys: parseInt(document.getElementById('input-sys').value, 10),
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          dia: parseInt(document.getElementById('input-dia').value, 10),
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          pulse: parseInt(document.getElementById('input-pulse').value, 10)
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        };
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        if (id) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          await db.records.update(parseInt(id, 10), record);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        } else {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          await db.records.add(record);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        alert('保存しました。');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        initForm();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        document.querySelector('[data-target="page-list"]').click();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      document.getElementById('btn-delete').addEventListener('click', async () => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const id = document.getElementById('edit-id').value;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        if (id && confirm('この記録を本当に削除しますか？')) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          await db.records.delete(parseInt(id, 10));
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          alert('削除しました。');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          initForm();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          document.querySelector('[data-target="page-list"]').click();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      document.getElementById('btn-cancel-edit').addEventListener('click', () => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        initForm();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // 8. 一覧表示
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      function formatDate(dateString) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const d = new Date(dateString);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+    function stopCamera() {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        stream = null;
+        video.srcObject = null;
       }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    }
 
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    btnStartCamera.addEventListener('click', startCamera);
 
-      async function loadList() {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    // ==========================================
+    // 6. Gemini API (REST) OCR処理
+    // ==========================================
+    async function performOCR(base64Image) {
+      const apiKey = localStorage.getItem('gemini_api_key');
+      const statusEl = document.getElementById('ocr-status');
 
-        const records = await db.records.orderBy('date').reverse().toArray();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const tbody = document.getElementById('record-tbody');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        tbody.innerHTML = '';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        records.forEach(r => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          const tr = document.createElement('tr');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          tr.innerHTML = `<td>${formatDate(r.date)}</td><td>${r.sys}</td><td>${r.dia}</td><td>${r.pulse}</td>`;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          tr.addEventListener('click', () => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            document.getElementById('edit-id').value = r.id;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            document.getElementById('input-date').value = r.date;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            document.getElementById('input-sys').value = r.sys;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            document.getElementById('input-dia').value = r.dia;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            document.getElementById('input-pulse').value = r.pulse;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            document.getElementById('btn-delete').style.display = 'block';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            document.getElementById('btn-cancel-edit').style.display = 'block';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            document.querySelector('[data-target="page-record"]').click();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            window.scrollTo(0,0);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          tbody.appendChild(tr);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+      if (!apiKey) {
+        statusEl.textContent = "設定からAPIキーを登録してください。";
+        document.querySelector('[data-target="page-settings"]').click();
+        return null;
       }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
 
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // 9. グラフ表示 (Chart.js)
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      let chartInstance = null;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      async function loadGraph() {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const records = await db.records.orderBy('date').toArray();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const ctx = document.getElementById('bpChart').getContext('2d');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const labels = records.map(r => formatDate(r.date));
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const sysData = records.map(r => r.sys);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const diaData = records.map(r => r.dia);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        if (chartInstance) chartInstance.destroy();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        chartInstance = new Chart(ctx, {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          type: 'line',
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          data: {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            labels: labels,
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            datasets: [
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              { label: '最高血圧 (SYS)', data: sysData, borderColor: '#dc3545', backgroundColor: '#dc3545', fill: false, tension: 0.1 },
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              { label: '最低血圧 (DIA)', data: diaData, borderColor: '#007bff', backgroundColor: '#007bff', fill: false, tension: 0.1 }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            ]
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          },
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          options: {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            responsive: true,
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            scales: { y: { suggestedMin: 40, suggestedMax: 200 } }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // 10. CSVエクスポート・インポート
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      // ==========================================
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      document.getElementById('btn-export').addEventListener('click', async () => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const records = await db.records.orderBy('date').toArray();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        if(records.length === 0) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          alert("出力するデータがありません。");
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          return;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const csvContent = "date,sys,dia,pulse\n" + records.map(r => `${r.date},${r.sys},${r.dia},${r.pulse}`).join("\n");
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const blob = new Blob([csvContent], { type: 'text/csv' });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const url = URL.createObjectURL(blob);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const a = document.createElement('a');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        a.href = url;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        a.download = 'blood_pressure.csv';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        document.body.appendChild(a);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        a.click();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        document.body.removeChild(a);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        URL.revokeObjectURL(url);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-      document.getElementById('input-import').addEventListener('change', (e) => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const file = e.target.files[0];
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        if (!file) return;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        const reader = new FileReader();
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-        reader.onload = async (event) => {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          const text = event.target.result;
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          const lines = text.split('\n').map(line => line.trim()).filter(line => line !== '');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          const newRecords = [];
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-          for (let i = 1; i < lines.length; i++) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            const [date, sys, dia, pulse] = lines[i].split(',');
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-            if (date && sys && dia && pulse) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              newRecords.push({
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                date: date,
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                sys: parseInt(sys, 10),
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                dia: parseInt(dia, 10),
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-                pulse: parseInt(pulse, 10)
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
-              });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+      statusEl.textContent = "AIで画像を解析中...";
+      
+      const model = 'gemini-2.5-flash-lite';
+      const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+      const payload = {
+        contents: [{
+          parts: [
+            { text: "医療機器の表示を読み取ってください。最高血圧、最低血圧、心拍数を抽出してください。" },
+            {
+              inline_data: {
+                mime_type: "image/jpeg",
+                data: base64Image
+              }
             }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
-
+          ]
+        }],
+        generationConfig: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: "OBJECT",
+            properties: {
+              sys: { type: "INTEGER", description: "最高血圧 (Systolic)" },
+              dia: { type: "INTEGER", description: "最低血圧 (Diastolic)" },
+              pulse: { type: "INTEGER", description: "心拍数 (Pulse)" }
+            },
+            required: ["sys", "dia", "pulse"]
           }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+        }
+      };
 
-          
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
 
-          if (newRecords.length > 0) {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error?.message || `HTTP error! status: ${response.status}`);
+        }
 
-            await db.records.bulkAdd(newRecords);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+        const data = await response.json();
+        const textResponse = data.candidates[0].content.parts[0].text;
+        
+        const parsedData = JSON.parse(textResponse);
+        
+        statusEl.textContent = "読み取り成功！";
+        return parsedData;
 
-            alert(`${newRecords.length}件のデータをインポートしました！`);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+      } catch (error) {
+        console.error("OCR Error:", error);
+        statusEl.textContent = "読み取り失敗: " + error.message;
+        return null;
+      }
+    }
 
-            e.target.value = '';
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    document.getElementById('btn-capture').addEventListener('click', async () => {
+      if (!stream) {
+        alert("カメラが起動していません。");
+        return;
+      }
+      
+      const context = canvas.getContext('2d');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+      const base64Image = dataUrl.split(',')[1];
+      
+      stopCamera();
+      resetCameraUI();
 
-          } else {
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+      const result = await performOCR(base64Image);
+      
+      if (result) {
+        if(result.sys) document.getElementById('input-sys').value = result.sys;
+        if(result.dia) document.getElementById('input-dia').value = result.dia;
+        if(result.pulse) document.getElementById('input-pulse').value = result.pulse;
+      }
+    });
 
-            alert("有効なデータが見つかりませんでした。");
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    // ==========================================
+    // 7. フォーム操作・DB保存
+    // ==========================================
+    function initForm() {
+      document.getElementById('record-form').reset();
+      document.getElementById('edit-id').value = '';
+      document.getElementById('btn-delete').style.display = 'none';
+      document.getElementById('btn-cancel-edit').style.display = 'none';
+      document.getElementById('ocr-status').textContent = '';
+      resetCameraUI();
+      
+      const now = new Date();
+      now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      document.getElementById('input-date').value = now.toISOString().slice(0, 16);
+    }
+    initForm();
 
-          }
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    document.getElementById('record-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const id = document.getElementById('edit-id').value;
+      const record = {
+        date: document.getElementById('input-date').value,
+        sys: parseInt(document.getElementById('input-sys').value, 10),
+        dia: parseInt(document.getElementById('input-dia').value, 10),
+        pulse: parseInt(document.getElementById('input-pulse').value, 10)
+      };
 
-        };
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+      if (id) {
+        await db.records.update(parseInt(id, 10), record);
+      } else {
+        await db.records.add(record);
+      }
+      alert('保存しました。');
+      initForm();
+      document.querySelector('[data-target="page-list"]').click();
+    });
 
-        reader.readAsText(file);
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    document.getElementById('btn-delete').addEventListener('click', async () => {
+      const id = document.getElementById('edit-id').value;
+      if (id && confirm('この記録を本当に削除しますか？')) {
+        await db.records.delete(parseInt(id, 10));
+        alert('削除しました。');
+        initForm();
+        document.querySelector('[data-target="page-list"]').click();
+      }
+    });
 
+    document.getElementById('btn-cancel-edit').addEventListener('click', () => {
+      initForm();
+    });
+
+    // ==========================================
+    // 8. 一覧表示
+    // ==========================================
+    function formatDate(dateString) {
+      const d = new Date(dateString);
+      return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    }
+
+    async function loadList() {
+      const records = await db.records.orderBy('date').reverse().toArray();
+      const tbody = document.getElementById('record-tbody');
+      tbody.innerHTML = '';
+      
+      records.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${formatDate(r.date)}</td><td>${r.sys}</td><td>${r.dia}</td><td>${r.pulse}</td>`;
+        
+        tr.addEventListener('click', () => {
+          document.getElementById('edit-id').value = r.id;
+          document.getElementById('input-date').value = r.date;
+          document.getElementById('input-sys').value = r.sys;
+          document.getElementById('input-dia').value = r.dia;
+          document.getElementById('input-pulse').value = r.pulse;
+          document.getElementById('btn-delete').style.display = 'block';
+          document.getElementById('btn-cancel-edit').style.display = 'block';
+          document.querySelector('[data-target="page-record"]').click();
+          window.scrollTo(0,0);
+        });
+        tbody.appendChild(tr);
       });
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    }
 
-  
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    // ==========================================
+    // 9. グラフ表示 (Chart.js)
+    // ==========================================
+    let chartInstance = null;
+    async function loadGraph() {
+      const records = await db.records.orderBy('date').toArray();
+      const ctx = document.getElementById('bpChart').getContext('2d');
+      
+      const labels = records.map(r => formatDate(r.date));
+      const sysData = records.map(r => r.sys);
+      const diaData = records.map(r => r.dia);
 
-    </script>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+      if (chartInstance) chartInstance.destroy();
+      
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            { label: '最高血圧 (SYS)', data: sysData, borderColor: '#dc3545', backgroundColor: '#dc3545', fill: false, tension: 0.1 },
+            { label: '最低血圧 (DIA)', data: diaData, borderColor: '#007bff', backgroundColor: '#007bff', fill: false, tension: 0.1 }
+          ]
+        },
+        options: {
+          responsive: true,
+          scales: { y: { suggestedMin: 40, suggestedMax: 200 } }
+        }
+      });
+    }
 
-  </body>
-    <footer class="footer">
-      <a href="https://github.com/yugo-yamamoto/work" target="_blank">リポジトリ（README）を表示</a>
-    </footer>
+    // ==========================================
+    // 10. CSVエクスポート・インポート
+    // ==========================================
+    document.getElementById('btn-export').addEventListener('click', async () => {
+      const records = await db.records.orderBy('date').toArray();
+      if(records.length === 0) {
+        alert("出力するデータがありません。");
+        return;
+      }
+      const csvContent = "date,sys,dia,pulse\n" + records.map(r => `${r.date},${r.sys},${r.dia},${r.pulse}`).join("\n");
+      const blob = new Blob([csvContent], { type: 'text/csv' });
 
-  </html>
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'blood_pressure.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('input-import').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = async (event) => {
+        const text = event.target.result;
+        const lines = text.split('\n').map(line => line.trim()).filter(line => line !== '');
+        
+        const newRecords = [];
+        for (let i = 1; i < lines.length; i++) {
+          const [date, sys, dia, pulse] = lines[i].split(',');
+          if (date && sys && dia && pulse) {
+            newRecords.push({
+              date: date,
+              sys: parseInt(sys, 10),
+              dia: parseInt(dia, 10),
+              pulse: parseInt(pulse, 10)
+            });
+          }
+        }
+        
+        if (newRecords.length > 0) {
+          await db.records.bulkAdd(newRecords);
+          alert(`${newRecords.length}件のデータをインポートしました！`);
+          e.target.value = '';
+        } else {
+          alert("有効なデータが見つかりませんでした。");
+        }
+      };
+      reader.readAsText(file);
+    });
+
+  </script>
+</body>
+</html>
