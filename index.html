@@ -151,6 +151,7 @@
         <p class="help-text" style="margin-top: 0.5rem;">他のスマホで読み取ってアプリを共有できます</p>
       </div>
 
+      <hr style="border: 0; border-top: 1px solid #dee2e6; margin: 1.5rem 0;">
 
       <h2>データ管理</h2>
       <div class="form-group">
@@ -176,13 +177,6 @@
     <button class="nav-btn" data-target="page-settings">設定</button>
   </nav>
 
-
-      // QRコードの生成
-      const qrcodeContainer = document.getElementById('qrcode-container');
-      const currentUrl = encodeURIComponent(window.location.href);
-      if (qrcodeContainer) {
-        qrcodeContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${currentUrl}" alt="QR Code" style="max-width: 150px; width: 100%;">`;
-      }
   <script>
     // --- JS部分は変更なし ---
     // (省略せずに全文貼り付けてください)
@@ -262,6 +256,12 @@
     function loadSettings() {
       const apiKey = localStorage.getItem('gemini_api_key') || '';
       document.getElementById('input-api-key').value = apiKey;
+
+      const qrcodeContainer = document.getElementById('qrcode-container');
+      const currentUrl = encodeURIComponent(window.location.href);
+      if (qrcodeContainer) {
+        qrcodeContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${currentUrl}" alt="QR Code" style="max-width: 150px; width: 100%;">`;
+      }
     }
 
     document.getElementById('btn-save-apikey').addEventListener('click', () => {
