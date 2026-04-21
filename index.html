@@ -208,22 +208,7 @@
     document.getElementById('dynamic-manifest').href = URL.createObjectURL(manifestBlob);
 
     if ('serviceWorker' in navigator) {
-      const swCode = `
-        const CACHE_NAME = 'bp-cache-${APP_VERSION}';
-        self.addEventListener('install', e => self.skipWaiting());
-        self.addEventListener('activate', e => {
-          e.waitUntil(
-            caches.keys()
-              .then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))
-              .then(() => self.clients.claim())
-          );
-        });
-        self.addEventListener('fetch', e => {
-          e.respondWith(fetch(e.request).catch(() => new Response('Offline')));
-        });
-      `;
-      const swBlob = new Blob([swCode], { type: 'application/javascript' });
-      navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(err => console.log('SW登録スキップ (Blob制限等):', err));
+      navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW登録エラー:', err));
     }
 
     let deferredPrompt;
@@ -321,11 +306,7 @@
 
     document.getElementById('btn-check-update').addEventListener('click', checkForUpdates);
 
-    document.getElementById('btn-do-update').addEventListener('click', async () => {
-      if ('serviceWorker' in navigator) {
-        const registrations = await navigator.serviceWorker.getRegistrations();
-        await Promise.all(registrations.map(r => r.unregister()));
-      }
+    document.getElementById('btn-do-update').addEventListener('click', () => {
       location.reload();
     });
 
