@@ -1,0 +1,13 @@
+{
+  "name": "blood-pressure-pwa",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "TZ=UTC vitest run --reporter=verbose"
+  },
+  "devDependencies": {
+    "dexie": "3.2.4",
+    "fake-indexeddb": "^5.0.2",
+    "vitest": "^1.6.0"
+  }
+}

@@ -398,6 +398,19 @@
       document.querySelector('[data-target="page-list"]').click();
     });
 
+    document.getElementById('btn-delete').addEventListener('click', async () => {
+      const id = document.getElementById('edit-id').value;
+      if (!id) return;
+      if (!confirm('この記録を削除しますか？')) return;
+      await db.records.delete(parseInt(id, 10));
+      initForm();
+      document.querySelector('[data-target="page-list"]').click();
+    });
+
+    document.getElementById('btn-cancel-edit').addEventListener('click', () => {
+      initForm();
+    });
+
     function formatDate(dateString) {
       const d = new Date(dateString);
       return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
