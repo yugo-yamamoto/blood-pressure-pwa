@@ -168,9 +168,6 @@
       <h2>アプリ情報</h2>
       <div class="form-group">
         <p style="margin: 0 0 0.8rem 0; font-size: 0.9rem; color: #333;">バージョン: <strong id="app-version"></strong></p>
-        <button id="btn-check-update" class="btn btn-secondary">アップデートを確認</button>
-        <p id="update-status" class="help-text" style="min-height: 1.2em; margin-top: 0.5rem;"></p>
-        <button id="btn-do-update" class="btn btn-primary" style="display:none;">アップデートする</button>
       </div>
     </div>
 
@@ -272,8 +269,6 @@
     function loadSettings() {
       document.getElementById('input-api-key').value = localStorage.getItem('gemini_api_key') || '';
       document.getElementById('app-version').textContent = APP_VERSION;
-      document.getElementById('update-status').textContent = '';
-      document.getElementById('btn-do-update').style.display = 'none';
 
       const qrcodeContainer = document.getElementById('qrcode-container');
       const currentUrl = encodeURIComponent(window.location.href);
@@ -281,34 +276,6 @@
         qrcodeContainer.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${currentUrl}" alt="QR Code" style="max-width: 150px; width: 100%;">`;
       }
     }
-
-    async function checkForUpdates() {
-      const statusEl = document.getElementById('update-status');
-      const btnUpdate = document.getElementById('btn-do-update');
-      statusEl.textContent = '確認中...';
-      btnUpdate.style.display = 'none';
-      try {
-        const res = await fetch(location.href, { cache: 'no-store' });
-        const html = await res.text();
-        const match = html.match(/const APP_VERSION = '([^']+)'/);
-        if (!match) throw new Error();
-        const remoteVersion = match[1];
-        if (remoteVersion !== APP_VERSION) {
-          statusEl.textContent = `新しいバージョン (${remoteVersion}) があります`;
-          btnUpdate.style.display = 'block';
-        } else {
-          statusEl.textContent = '最新版を使用しています';
-        }
-      } catch {
-        statusEl.textContent = '確認できませんでした（オフラインまたはエラー）';
-      }
-    }
-
-    document.getElementById('btn-check-update').addEventListener('click', checkForUpdates);
-
-    document.getElementById('btn-do-update').addEventListener('click', () => {
-      location.reload();
-    });
 
     document.getElementById('btn-save-apikey').addEventListener('click', () => {
       const apiKey = document.getElementById('input-api-key').value.trim();
