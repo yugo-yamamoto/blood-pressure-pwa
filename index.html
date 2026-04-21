@@ -235,22 +235,37 @@
     const pages = document.querySelectorAll('.page');
     const navBtns = document.querySelectorAll('.nav-btn');
 
+    function showPage(targetId) {
+      pages.forEach(p => p.classList.remove('active'));
+      navBtns.forEach(b => b.classList.remove('active'));
+      document.getElementById(targetId).classList.add('active');
+      document.querySelector(`[data-target="${targetId}"]`).classList.add('active');
+      if (targetId === 'page-list') loadList();
+      if (targetId === 'page-graph') loadGraph();
+      if (targetId === 'page-settings') loadSettings();
+      if (targetId === 'page-record') {
+        if (!document.getElementById('edit-id').value) initForm();
+      } else {
+        stopCamera();
+        resetCameraUI();
+      }
+    }
+
     navBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        pages.forEach(p => p.classList.remove('active'));
-        navBtns.forEach(b => b.classList.remove('active'));
-        document.getElementById(btn.dataset.target).classList.add('active');
-        btn.classList.add('active');
-        if (btn.dataset.target === 'page-list') loadList();
-        if (btn.dataset.target === 'page-graph') loadGraph();
-        if (btn.dataset.target === 'page-settings') loadSettings();
-        if (btn.dataset.target === 'page-record') {
-          if(!document.getElementById('edit-id').value) initForm();
-        } else {
-          stopCamera();
-          resetCameraUI();
+        const target = btn.dataset.target;
+        if (!document.getElementById(target).classList.contains('active')) {
+          history.pushState({ page: target }, '');
         }
+        showPage(target);
       });
+    });
+
+    history.replaceState({ page: 'page-record' }, '');
+
+    window.addEventListener('popstate', (e) => {
+      const page = e.state?.page ?? 'page-record';
+      showPage(page);
     });
 
     function loadSettings() {
