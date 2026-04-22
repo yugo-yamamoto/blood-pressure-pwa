@@ -46,11 +46,11 @@
     #record-form .form-group {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.5rem;
       margin-bottom: 0.5rem;
     }
     #record-form label {
-      min-width: 7.5rem;
+      min-width: 6.5rem;
       margin-bottom: 0;
       flex-shrink: 0;
     }
@@ -62,9 +62,11 @@
       flex-shrink: 0;
     }
     #record-form input[type="datetime-local"] {
+      width: auto;    /* グローバルの width:100% を上書き */
+      min-width: 0;   /* flex アイテムの縮小を許可 */
       flex: 1;
-      font-size: 1.5rem;
-      padding: 0.1rem 0.4rem;
+      font-size: 1rem;
+      padding: 0.3rem 0.4rem;
     }
 
     /* カメラ */
