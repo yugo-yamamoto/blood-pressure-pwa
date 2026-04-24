@@ -212,7 +212,7 @@
   </nav>
 
   <script>
-    const APP_VERSION = '1.0.1';
+    const APP_VERSION = '1.0.2';
 
     const manifest = {
       name: "血圧手帳 PWA",
@@ -508,12 +508,15 @@
       const reader = new FileReader();
       reader.onload = async (event) => {
         const lines = event.target.result.split('\n').filter(l => l.trim() !== '');
-        const newRecords = lines.slice(1).map(line => {
+        const parsed = lines.slice(1).map(line => {
           const [date, sys, dia, pulse] = line.split(',');
           return { date, sys: parseInt(sys), dia: parseInt(dia), pulse: parseInt(pulse) };
         });
-        await db.records.bulkAdd(newRecords);
-        alert('インポート完了');
+        const existing = await db.records.toArray();
+        const existingKeys = new Set(existing.map(r => `${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
+        const toAdd = parsed.filter(r => !existingKeys.has(`${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
+        if (toAdd.length > 0) await db.records.bulkAdd(toAdd);
+        alert(`インポート完了（${toAdd.length}件追加、${parsed.length - toAdd.length}件スキップ）`);
       };
       reader.readAsText(e.target.files[0]);
     });

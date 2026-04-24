@@ -171,3 +171,75 @@ describe('削除処理（btn-delete が呼び出すロジック）', () => {
     await expect(db.records.delete(9999)).resolves.not.toThrow();
   });
 });
+
+// index.html の import ハンドラと同じ重複排除ロジック
+async function importWithDedup(db, parsed) {
+  const existing = await db.records.toArray();
+  const existingKeys = new Set(existing.map(r => `${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
+  const toAdd = parsed.filter(r => !existingKeys.has(`${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
+  if (toAdd.length > 0) await db.records.bulkAdd(toAdd);
+  return { added: toAdd.length, skipped: parsed.length - toAdd.length };
+}
+
+describe('CSVインポート重複排除', () => {
+  let db;
+
+  beforeEach(() => {
+    db = createDb();
+  });
+
+  afterEach(async () => {
+    await db.close();
+  });
+
+  it('既存レコードがない場合は全件追加される', async () => {
+    const parsed = [
+      { date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 },
+      { date: '2024-01-16T10:30', sys: 130, dia: 85, pulse: 65 },
+    ];
+    const { added, skipped } = await importWithDedup(db, parsed);
+    expect(added).toBe(2);
+    expect(skipped).toBe(0);
+    expect(await db.records.count()).toBe(2);
+  });
+
+  it('全件が既存と完全一致する場合は何も追加しない', async () => {
+    await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
+    const parsed = [{ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 }];
+    const { added, skipped } = await importWithDedup(db, parsed);
+    expect(added).toBe(0);
+    expect(skipped).toBe(1);
+    expect(await db.records.count()).toBe(1);
+  });
+
+  it('新規と重複が混在する場合は新規のみ追加される', async () => {
+    await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
+    const parsed = [
+      { date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 }, // 重複
+      { date: '2024-01-16T10:30', sys: 130, dia: 85, pulse: 65 }, // 新規
+    ];
+    const { added, skipped } = await importWithDedup(db, parsed);
+    expect(added).toBe(1);
+    expect(skipped).toBe(1);
+    expect(await db.records.count()).toBe(2);
+  });
+
+  it('date が同じでも他のフィールドが違えば重複とみなさない', async () => {
+    await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
+    const parsed = [{ date: '2024-01-15T09:05', sys: 125, dia: 80, pulse: 60 }]; // sys が違う
+    const { added, skipped } = await importWithDedup(db, parsed);
+    expect(added).toBe(1);
+    expect(skipped).toBe(0);
+    expect(await db.records.count()).toBe(2);
+  });
+
+  it('同じCSVを2回インポートしても件数が増えない', async () => {
+    const parsed = [
+      { date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 },
+      { date: '2024-01-16T10:30', sys: 130, dia: 85, pulse: 65 },
+    ];
+    await importWithDedup(db, parsed);
+    await importWithDedup(db, parsed); // 2回目
+    expect(await db.records.count()).toBe(2);
+  });
+});
