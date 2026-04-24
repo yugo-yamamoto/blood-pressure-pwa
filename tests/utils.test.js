@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { formatDate, getLocalDatetimeValue } from './helpers.js';
+import { formatDate, getLocalDatetimeValue } from '../main.js';
 
 describe('formatDate', () => {
   it('通常の日付を正しくフォーマットする', () => {

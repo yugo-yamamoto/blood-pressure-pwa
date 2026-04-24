@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { generateCsv, parseCsvToRecords } from './helpers.js';
+import { generateCsv, parseCsvToRecords } from '../main.js';
 
 describe('generateCsv', () => {
   it('空配列のときはヘッダー行のみ生成する', () => {
