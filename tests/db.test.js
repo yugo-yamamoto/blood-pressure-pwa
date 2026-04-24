@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { IDBFactory, IDBKeyRange } from 'fake-indexeddb';
 import Dexie from 'dexie';
+import { addRecord, updateRecord, deleteRecord, fetchRecords, importRecords } from '../main.js';
 
-// テストごとに独立した IDBFactory を使うことでデータが混在しない
 function createDb() {
   const db = new Dexie('BloodPressureDB', {
     indexedDB: new IDBFactory(),
@@ -72,7 +72,7 @@ describe('Database CRUD', () => {
     expect(updated.sys).toBe(135);
     expect(updated.dia).toBe(90);
     expect(updated.pulse).toBe(70);
-    expect(updated.date).toBe('2024-01-15T09:05'); // dateは変わらない
+    expect(updated.date).toBe('2024-01-15T09:05');
   });
 
   it('レコードを削除できる', async () => {
@@ -132,20 +132,60 @@ describe('Database CRUD', () => {
   });
 });
 
-describe('削除処理（btn-delete が呼び出すロジック）', () => {
+describe('addRecord', () => {
   let db;
 
-  beforeEach(() => {
-    db = createDb();
+  beforeEach(() => { db = createDb(); });
+  afterEach(async () => { await db.close(); });
+
+  it('レコードを追加して数値IDを返す', async () => {
+    const id = await addRecord(db, { date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
+    expect(typeof id).toBe('number');
   });
 
-  afterEach(async () => {
-    await db.close();
+  it('追加したレコードをDBから取得できる', async () => {
+    const id = await addRecord(db, { date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
+    const record = await db.records.get(id);
+    expect(record).toMatchObject({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
   });
+});
+
+describe('updateRecord', () => {
+  let db;
+
+  beforeEach(() => { db = createDb(); });
+  afterEach(async () => { await db.close(); });
+
+  it('数値IDで更新できる', async () => {
+    const id = await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
+    await updateRecord(db, id, { sys: 135, dia: 90, pulse: 70 });
+    const updated = await db.records.get(id);
+    expect(updated.sys).toBe(135);
+  });
+
+  it('文字列IDを渡しても正しく更新できる（フォームの edit-id は文字列）', async () => {
+    const id = await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
+    await updateRecord(db, String(id), { sys: 135, dia: 90, pulse: 70 });
+    const updated = await db.records.get(id);
+    expect(updated.sys).toBe(135);
+  });
+});
+
+describe('deleteRecord', () => {
+  let db;
+
+  beforeEach(() => { db = createDb(); });
+  afterEach(async () => { await db.close(); });
 
   it('指定IDのレコードを削除できる', async () => {
     const id = await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
-    await db.records.delete(parseInt(String(id), 10));
+    await deleteRecord(db, id);
+    expect(await db.records.get(id)).toBeUndefined();
+  });
+
+  it('文字列IDを渡しても正しく削除できる（フォームの edit-id は文字列）', async () => {
+    const id = await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
+    await deleteRecord(db, String(id));
     expect(await db.records.get(id)).toBeUndefined();
   });
 
@@ -155,49 +195,63 @@ describe('削除処理（btn-delete が呼び出すロジック）', () => {
       { date: '2024-01-16T09:00', sys: 125, dia: 82, pulse: 62 },
     ]);
     const all = await db.records.toArray();
-    await db.records.delete(all[0].id);
+    await deleteRecord(db, all[0].id);
     expect(await db.records.count()).toBe(1);
   });
 
-  it('文字列IDをparseIntして渡しても正しく削除できる（フォームの edit-id は文字列）', async () => {
-    const id = await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
-    // フォームの hidden input から取得すると文字列になるため parseInt が必要
-    const idAsString = String(id);
-    await db.records.delete(parseInt(idAsString, 10));
-    expect(await db.records.get(id)).toBeUndefined();
-  });
-
   it('存在しないIDを削除しても例外が発生しない', async () => {
-    await expect(db.records.delete(9999)).resolves.not.toThrow();
+    await expect(deleteRecord(db, 9999)).resolves.not.toThrow();
   });
 });
 
-// index.html の import ハンドラと同じ重複排除ロジック
-async function importWithDedup(db, parsed) {
-  const existing = await db.records.toArray();
-  const existingKeys = new Set(existing.map(r => `${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
-  const toAdd = parsed.filter(r => !existingKeys.has(`${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
-  if (toAdd.length > 0) await db.records.bulkAdd(toAdd);
-  return { added: toAdd.length, skipped: parsed.length - toAdd.length };
-}
-
-describe('CSVインポート重複排除', () => {
+describe('fetchRecords', () => {
   let db;
 
-  beforeEach(() => {
-    db = createDb();
+  beforeEach(() => { db = createDb(); });
+  afterEach(async () => { await db.close(); });
+
+  it('デフォルトは日付昇順で返す', async () => {
+    await db.records.bulkAdd([
+      { date: '2024-01-17T09:00', sys: 130, dia: 85, pulse: 65 },
+      { date: '2024-01-15T09:00', sys: 120, dia: 80, pulse: 60 },
+      { date: '2024-01-16T09:00', sys: 125, dia: 82, pulse: 62 },
+    ]);
+    const records = await fetchRecords(db);
+    expect(records.map(r => r.date)).toEqual([
+      '2024-01-15T09:00',
+      '2024-01-16T09:00',
+      '2024-01-17T09:00',
+    ]);
   });
 
-  afterEach(async () => {
-    await db.close();
+  it('order: desc で日付降順（一覧表示用）で返す', async () => {
+    await db.records.bulkAdd([
+      { date: '2024-01-15T09:00', sys: 120, dia: 80, pulse: 60 },
+      { date: '2024-01-17T09:00', sys: 130, dia: 85, pulse: 65 },
+      { date: '2024-01-16T09:00', sys: 125, dia: 82, pulse: 62 },
+    ]);
+    const records = await fetchRecords(db, { order: 'desc' });
+    expect(records.map(r => r.date)).toEqual([
+      '2024-01-17T09:00',
+      '2024-01-16T09:00',
+      '2024-01-15T09:00',
+    ]);
   });
+
+  it('空のDBは空配列を返す', async () => {
+    expect(await fetchRecords(db)).toEqual([]);
+  });
+});
+
+describe('importRecords', () => {
+  let db;
+
+  beforeEach(() => { db = createDb(); });
+  afterEach(async () => { await db.close(); });
 
   it('既存レコードがない場合は全件追加される', async () => {
-    const parsed = [
-      { date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 },
-      { date: '2024-01-16T10:30', sys: 130, dia: 85, pulse: 65 },
-    ];
-    const { added, skipped } = await importWithDedup(db, parsed);
+    const csv = 'date,sys,dia,pulse\n2024-01-15T09:05,120,80,60\n2024-01-16T10:30,130,85,65';
+    const { added, skipped } = await importRecords(db, csv);
     expect(added).toBe(2);
     expect(skipped).toBe(0);
     expect(await db.records.count()).toBe(2);
@@ -205,8 +259,8 @@ describe('CSVインポート重複排除', () => {
 
   it('全件が既存と完全一致する場合は何も追加しない', async () => {
     await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
-    const parsed = [{ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 }];
-    const { added, skipped } = await importWithDedup(db, parsed);
+    const csv = 'date,sys,dia,pulse\n2024-01-15T09:05,120,80,60';
+    const { added, skipped } = await importRecords(db, csv);
     expect(added).toBe(0);
     expect(skipped).toBe(1);
     expect(await db.records.count()).toBe(1);
@@ -214,11 +268,8 @@ describe('CSVインポート重複排除', () => {
 
   it('新規と重複が混在する場合は新規のみ追加される', async () => {
     await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
-    const parsed = [
-      { date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 }, // 重複
-      { date: '2024-01-16T10:30', sys: 130, dia: 85, pulse: 65 }, // 新規
-    ];
-    const { added, skipped } = await importWithDedup(db, parsed);
+    const csv = 'date,sys,dia,pulse\n2024-01-15T09:05,120,80,60\n2024-01-16T10:30,130,85,65';
+    const { added, skipped } = await importRecords(db, csv);
     expect(added).toBe(1);
     expect(skipped).toBe(1);
     expect(await db.records.count()).toBe(2);
@@ -226,20 +277,17 @@ describe('CSVインポート重複排除', () => {
 
   it('date が同じでも他のフィールドが違えば重複とみなさない', async () => {
     await db.records.add({ date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 });
-    const parsed = [{ date: '2024-01-15T09:05', sys: 125, dia: 80, pulse: 60 }]; // sys が違う
-    const { added, skipped } = await importWithDedup(db, parsed);
+    const csv = 'date,sys,dia,pulse\n2024-01-15T09:05,125,80,60';
+    const { added, skipped } = await importRecords(db, csv);
     expect(added).toBe(1);
     expect(skipped).toBe(0);
     expect(await db.records.count()).toBe(2);
   });
 
   it('同じCSVを2回インポートしても件数が増えない', async () => {
-    const parsed = [
-      { date: '2024-01-15T09:05', sys: 120, dia: 80, pulse: 60 },
-      { date: '2024-01-16T10:30', sys: 130, dia: 85, pulse: 65 },
-    ];
-    await importWithDedup(db, parsed);
-    await importWithDedup(db, parsed); // 2回目
+    const csv = 'date,sys,dia,pulse\n2024-01-15T09:05,120,80,60\n2024-01-16T10:30,130,85,65';
+    await importRecords(db, csv);
+    await importRecords(db, csv);
     expect(await db.records.count()).toBe(2);
   });
 });

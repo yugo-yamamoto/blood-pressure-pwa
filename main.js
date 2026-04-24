@@ -25,6 +25,32 @@ export function getLocalDatetimeValue(now = new Date()) {
   return d.toISOString().slice(0, 16);
 }
 
+export async function addRecord(db, record) {
+  return db.records.add(record);
+}
+
+export async function updateRecord(db, id, record) {
+  return db.records.update(parseInt(id, 10), record);
+}
+
+export async function deleteRecord(db, id) {
+  return db.records.delete(parseInt(id, 10));
+}
+
+export async function fetchRecords(db, { order = 'asc' } = {}) {
+  const q = db.records.orderBy('date');
+  return order === 'desc' ? q.reverse().toArray() : q.toArray();
+}
+
+export async function importRecords(db, csvText) {
+  const parsed = parseCsvToRecords(csvText);
+  const existing = await db.records.toArray();
+  const existingKeys = new Set(existing.map(r => `${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
+  const toAdd = parsed.filter(r => !existingKeys.has(`${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
+  if (toAdd.length > 0) await db.records.bulkAdd(toAdd);
+  return { added: toAdd.length, skipped: parsed.length - toAdd.length };
+}
+
 if (typeof window !== 'undefined') {
   initApp();
 }
@@ -246,8 +272,8 @@ function initApp() {
       dia: parseInt(document.getElementById('input-dia').value, 10),
       pulse: parseInt(document.getElementById('input-pulse').value, 10)
     };
-    if (id) await db.records.update(parseInt(id, 10), record);
-    else await db.records.add(record);
+    if (id) await updateRecord(db, id, record);
+    else await addRecord(db, record);
     initForm();
     document.querySelector('[data-target="page-list"]').click();
   });
@@ -256,7 +282,7 @@ function initApp() {
     const id = document.getElementById('edit-id').value;
     if (!id) return;
     if (!confirm('この記録を削除しますか？')) return;
-    await db.records.delete(parseInt(id, 10));
+    await deleteRecord(db, id);
     initForm();
     document.querySelector('[data-target="page-list"]').click();
   });
@@ -266,7 +292,7 @@ function initApp() {
   });
 
   async function loadList() {
-    const records = await db.records.orderBy('date').reverse().toArray();
+    const records = await fetchRecords(db, { order: 'desc' });
     const tbody = document.getElementById('record-tbody');
     tbody.innerHTML = '';
     records.forEach(r => {
@@ -288,7 +314,7 @@ function initApp() {
 
   let chartInstance = null;
   async function loadGraph() {
-    const records = await db.records.orderBy('date').toArray();
+    const records = await fetchRecords(db);
     const ctx = document.getElementById('bpChart').getContext('2d');
     if (chartInstance) chartInstance.destroy();
     chartInstance = new Chart(ctx, {
@@ -304,7 +330,7 @@ function initApp() {
   }
 
   document.getElementById('btn-export').addEventListener('click', async () => {
-    const records = await db.records.orderBy('date').toArray();
+    const records = await fetchRecords(db);
     const blob = new Blob([generateCsv(records)], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -315,12 +341,8 @@ function initApp() {
   document.getElementById('input-import').addEventListener('change', (e) => {
     const reader = new FileReader();
     reader.onload = async (event) => {
-      const parsed = parseCsvToRecords(event.target.result);
-      const existing = await db.records.toArray();
-      const existingKeys = new Set(existing.map(r => `${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
-      const toAdd = parsed.filter(r => !existingKeys.has(`${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
-      if (toAdd.length > 0) await db.records.bulkAdd(toAdd);
-      alert(`インポート完了（${toAdd.length}件追加、${parsed.length - toAdd.length}件スキップ）`);
+      const { added, skipped } = await importRecords(db, event.target.result);
+      alert(`インポート完了（${added}件追加、${skipped}件スキップ）`);
     };
     reader.readAsText(e.target.files[0]);
   });
