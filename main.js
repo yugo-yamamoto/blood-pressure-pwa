@@ -1,6 +1,6 @@
 import Dexie from 'dexie';
 
-export const APP_VERSION = '1.0.3';
+export const APP_VERSION = '1.0.4';
 
 export function formatDate(dateString) {
   const d = new Date(dateString);
