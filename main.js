@@ -7,11 +7,11 @@ export function formatDate(dateString) {
   return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
 }
 
-export function generateCsv(records) {
-  return "date,sys,dia,pulse\n" + records.map(r => `${r.date},${r.sys},${r.dia},${r.pulse}`).join("\n");
+export function generateCsv(measurements) {
+  return "date,sys,dia,pulse\n" + measurements.map(m => `${m.date},${m.sys},${m.dia},${m.pulse}`).join("\n");
 }
 
-export function parseCsvToRecords(csvText) {
+export function parseCsvToMeasurements(csvText) {
   const lines = csvText.split('\n').filter(l => l.trim() !== '');
   return lines.slice(1).map(line => {
     const [date, sys, dia, pulse] = line.split(',');
@@ -25,28 +25,28 @@ export function getLocalDatetimeValue(now = new Date()) {
   return d.toISOString().slice(0, 16);
 }
 
-export async function addRecord(db, record) {
-  return db.records.add(record);
+export async function addMeasurement(db, measurement) {
+  return db.records.add(measurement);
 }
 
-export async function updateRecord(db, id, record) {
-  return db.records.update(parseInt(id, 10), record);
+export async function updateMeasurement(db, id, measurement) {
+  return db.records.update(parseInt(id, 10), measurement);
 }
 
-export async function deleteRecord(db, id) {
+export async function deleteMeasurement(db, id) {
   return db.records.delete(parseInt(id, 10));
 }
 
-export async function fetchRecords(db, { order = 'asc' } = {}) {
+export async function fetchMeasurements(db, { order = 'asc' } = {}) {
   const q = db.records.orderBy('date');
   return order === 'desc' ? q.reverse().toArray() : q.toArray();
 }
 
-export async function importRecords(db, csvText) {
-  const parsed = parseCsvToRecords(csvText);
+export async function importMeasurements(db, csvText) {
+  const parsed = parseCsvToMeasurements(csvText);
   const existing = await db.records.toArray();
-  const existingKeys = new Set(existing.map(r => `${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
-  const toAdd = parsed.filter(r => !existingKeys.has(`${r.date}|${r.sys}|${r.dia}|${r.pulse}`));
+  const existingKeys = new Set(existing.map(m => `${m.date}|${m.sys}|${m.dia}|${m.pulse}`));
+  const toAdd = parsed.filter(m => !existingKeys.has(`${m.date}|${m.sys}|${m.dia}|${m.pulse}`));
   if (toAdd.length > 0) await db.records.bulkAdd(toAdd);
   return { added: toAdd.length, skipped: parsed.length - toAdd.length };
 }
@@ -266,14 +266,14 @@ function initApp() {
   document.getElementById('record-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const id = document.getElementById('edit-id').value;
-    const record = {
+    const measurement = {
       date: document.getElementById('input-date').value,
       sys: parseInt(document.getElementById('input-sys').value, 10),
       dia: parseInt(document.getElementById('input-dia').value, 10),
       pulse: parseInt(document.getElementById('input-pulse').value, 10)
     };
-    if (id) await updateRecord(db, id, record);
-    else await addRecord(db, record);
+    if (id) await updateMeasurement(db, id, measurement);
+    else await addMeasurement(db, measurement);
     initForm();
     document.querySelector('[data-target="page-list"]').click();
   });
@@ -282,7 +282,7 @@ function initApp() {
     const id = document.getElementById('edit-id').value;
     if (!id) return;
     if (!confirm('この記録を削除しますか？')) return;
-    await deleteRecord(db, id);
+    await deleteMeasurement(db, id);
     initForm();
     document.querySelector('[data-target="page-list"]').click();
   });
@@ -292,18 +292,18 @@ function initApp() {
   });
 
   async function loadList() {
-    const records = await fetchRecords(db, { order: 'desc' });
+    const measurements = await fetchMeasurements(db, { order: 'desc' });
     const tbody = document.getElementById('record-tbody');
     tbody.innerHTML = '';
-    records.forEach(r => {
+    measurements.forEach(m => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${formatDate(r.date)}</td><td>${r.sys}</td><td>${r.dia}</td><td>${r.pulse}</td>`;
+      tr.innerHTML = `<td>${formatDate(m.date)}</td><td>${m.sys}</td><td>${m.dia}</td><td>${m.pulse}</td>`;
       tr.addEventListener('click', () => {
-        document.getElementById('edit-id').value = r.id;
-        document.getElementById('input-date').value = r.date;
-        document.getElementById('input-sys').value = r.sys;
-        document.getElementById('input-dia').value = r.dia;
-        document.getElementById('input-pulse').value = r.pulse;
+        document.getElementById('edit-id').value = m.id;
+        document.getElementById('input-date').value = m.date;
+        document.getElementById('input-sys').value = m.sys;
+        document.getElementById('input-dia').value = m.dia;
+        document.getElementById('input-pulse').value = m.pulse;
         document.getElementById('btn-delete').style.display = 'block';
         document.getElementById('btn-cancel-edit').style.display = 'block';
         document.querySelector('[data-target="page-record"]').click();
@@ -314,24 +314,24 @@ function initApp() {
 
   let chartInstance = null;
   async function loadGraph() {
-    const records = await fetchRecords(db);
+    const measurements = await fetchMeasurements(db);
     const ctx = document.getElementById('bpChart').getContext('2d');
     if (chartInstance) chartInstance.destroy();
     chartInstance = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: records.map(r => formatDate(r.date)),
+        labels: measurements.map(m => formatDate(m.date)),
         datasets: [
-          { label: '最高血圧', data: records.map(r => r.sys), borderColor: '#dc3545', fill: false },
-          { label: '最低血圧', data: records.map(r => r.dia), borderColor: '#007bff', fill: false }
+          { label: '最高血圧', data: measurements.map(m => m.sys), borderColor: '#dc3545', fill: false },
+          { label: '最低血圧', data: measurements.map(m => m.dia), borderColor: '#007bff', fill: false }
         ]
       }
     });
   }
 
   document.getElementById('btn-export').addEventListener('click', async () => {
-    const records = await fetchRecords(db);
-    const blob = new Blob([generateCsv(records)], { type: 'text/csv' });
+    const measurements = await fetchMeasurements(db);
+    const blob = new Blob([generateCsv(measurements)], { type: 'text/csv' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url; a.download = 'blood_pressure.csv';
@@ -341,7 +341,7 @@ function initApp() {
   document.getElementById('input-import').addEventListener('change', (e) => {
     const reader = new FileReader();
     reader.onload = async (event) => {
-      const { added, skipped } = await importRecords(db, event.target.result);
+      const { added, skipped } = await importMeasurements(db, event.target.result);
       alert(`インポート完了（${added}件追加、${skipped}件スキップ）`);
     };
     reader.readAsText(e.target.files[0]);
